@@ -7,8 +7,12 @@ class twitter_data(models.Model):
     tweet_id = models.CharField(max_length=256, default='', blank='True')
     name = models.CharField(max_length=128, default='', blank='True')
     username = models.CharField(max_length=128, default='', blank='True')
+
+class whatsapp_data(models.Model):
+    complaint_id = models.CharField(max_length=64, default='', blank='True')
+    number = models.CharField(max_length=256, default='', blank='True')
+    name = models.CharField(max_length=128, default='', blank='True')
         
-    
 class complaint(models.Model):
     complaint_id = models.CharField(max_length=64, default='', blank='True')
     uploaded_timestamp = models.DateTimeField(default=timezone.now, blank=True)
