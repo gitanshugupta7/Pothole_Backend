@@ -22,7 +22,9 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','project.settings')
 import django
 django.setup()
 
-from app1.models import twitter_data, complaint
+import potholedetector
+
+from app1.models import twitter_data, pothole
 
 auth = tweepy.OAuthHandler('s85wrlCQW61WWdL9TvPWXQgw5', 'bZ7vPutHBH1qqvI4VEfJYmK51WVUlJRoCLJnLtvkUMknxriJbx')
 auth.set_access_token('1208629520451850245-YvBQWMfQYzBROSwSHDeW3fWd4Gc5rz',
@@ -111,6 +113,25 @@ class tweetparse7:
                     local_image = unique_id + '.jpg'
                     resp.raw.decode_content = True
                     shutil.copyfileobj(resp.raw, local_file)
+                    p = potholedetector.Image(unique_id)
+                    if p==1 :
+                        print("Gadda hain bhai")
+                    else:
+                        print("Gadda nai hain bhai jhut bol raha hain")
+                        self.final = {}
+                        os.remove('C:/Users/GITANSHU/DjangoAPI/project/media/'+unique_id+'.jpg')
+                        i7 = '@' + d['user']['screen_name']
+                        m1 = i7 + " " + "Dear User , you have not posted photo of the pothole, please upload a valid image, Tweet Failed"
+                        try:
+                            api.update_status(m1, d['id'])
+                        except tweepy.TweepError as error:
+                            if error.api_code == 187:
+                                print("An error occured")
+                            else:
+                                raise error
+                        del d[j]
+                        flag = 0
+                        break
                     del resp
                 else:
                     i7 = '@' + d['user']['screen_name']
@@ -191,7 +212,7 @@ class StdOutListener(StreamListener):
                 if(res is True):
                     print("No data to store")
                 else:
-                    current_complaint = complaint()
+                    current_complaint = pothole()
                     current_tweet = twitter_data()
 
                     current_tweet.complaint_id = unique_id

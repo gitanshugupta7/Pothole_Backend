@@ -21,6 +21,6 @@ from app1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pothole/', views.Pothole.as_view()),
-    path('pothole/<int:pk>/', views.PotholeDetails.as_view()),
+    path('pothole/<str:st>/', views.Pothole.as_view()),
+    path('pothole/<slug:st>', views.PotholeDetails.as_view())
 ]

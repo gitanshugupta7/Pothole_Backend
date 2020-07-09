@@ -8,3 +8,4 @@ class PotholeSerializer(serializers.ModelSerializer):
 		model = pothole
 		fields = "__all__"
     
+

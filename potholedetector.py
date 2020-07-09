@@ -52,42 +52,23 @@ import keras.preprocessing.image as img
 from keras.applications.resnet50 import ResNet50
 
 
-#calling model
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','project.settings')
-import django
-django.setup()
-
-from app1.models import complaint, pothole
-
-
 model = Sequential()
 model = load_model(r'C:/Users/GITANSHU/DjangoAPI/Pothole-Detector-Model.h5')
 
 
-def Image():
+def Image(unique_id):
 
-    #calling database model
-    current_complaint = complaint.objects.get(complaint_id = complaint_id)
+    path = "C:/Users/GITANSHU/DjangoAPI/project/media/" + unique_id + ".jpg"
+    X = cv2.imread(path,cv2.IMREAD_COLOR)
+    X = cv2.resize(X,(256,256))
 
-    path = "C:/Users/GITANSHU/DjangoAPI/project/media/" + complaint_id + ".jpg"
-    files = os.listdir(path)
-    for i in tqdm(files):
-        pth = os.path.join(path,i)
-        X = cv2.imread(pth,cv2.IMREAD_COLOR)
-        X = cv2.resize(X,(256,256))
-        plt.figure()
-        plt.imshow(X[:,:,::-1]) 
-        plt.show()  
+    X = np.array(X)
+    X = np.expand_dims(X, axis=0)
 
-        X = np.array(X)
-        X = np.expand_dims(X, axis=0)
-
-        y_pred = np.round(model.predict(X))
-       if y_pred[0][0] == 1:
-            print("Plain Road")
-        else:
-            print("Pothole Road")
-
+    y_pred = np.round(model.predict(X))
+    if y_pred[0][0] == 1:
+        return 0
+    else:
+        return 1
     
     
