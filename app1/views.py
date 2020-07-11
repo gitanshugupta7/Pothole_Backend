@@ -4,6 +4,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.utils import timezone
+import json
 
 class Pothole(APIView):
     
@@ -29,7 +31,15 @@ class PotholeDetails(APIView):
         return Response(serializer.data)
 
     def put(self, request, st, format=None):
+        data = json.loads(request.body)
         pothole = self.get_object(st)
+
+        if data['status'] == 'Ongoing' :
+            pothole.ongoing_timestamp = timezone.now()
+
+        if data['status'] == 'Completed':
+            pothole.completed_timestamp = timezone.now()
+
         serializer = PotholeSerializer(pothole, data=request.data)
         if serializer.is_valid():
             serializer.save()

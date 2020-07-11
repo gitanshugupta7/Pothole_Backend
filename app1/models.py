@@ -19,7 +19,7 @@ class pothole(models.Model):
     address = models.CharField(max_length=512, default='', blank='True')
     status = models.CharField(max_length=20, default='Recent')
     uploaded_timestamp = models.DateTimeField(default=timezone.now, blank=True)
-    ongoin_timestamp = models.DateTimeField(default=timezone.now, blank=True)
+    ongoing_timestamp = models.DateTimeField(default=timezone.now, blank=True)
     completed_timestamp = models.DateTimeField(default=timezone.now, blank=True)
     ward_no = models.IntegerField(default=108)
     no_of_reporters = models.IntegerField(default=10)
