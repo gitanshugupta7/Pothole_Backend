@@ -8,11 +8,19 @@ class twitter_data(models.Model):
     name = models.CharField(max_length=128, default='', blank='True')
     username = models.CharField(max_length=128, default='', blank='True')
 
+    def __str__(self):
+        return self.complaint_id
+
+
 class whatsapp_data(models.Model):
     complaint_id = models.CharField(max_length=64, default='', blank='True')
     number = models.CharField(max_length=256, default='', blank='True')
     name = models.CharField(max_length=128, default='', blank='True')
-            
+  
+    def __str__(self):
+        return self.complaint_id
+    
+         
 class pothole(models.Model):
     complaint_id = models.CharField(max_length=64, default='', blank='True')
     coordinates = models.CharField(max_length=64, default='', blank='True') 
@@ -26,3 +34,8 @@ class pothole(models.Model):
     pothole_image = models.ImageField(upload_to = "pothole_pictures", blank = "True")
     origin = models.CharField(max_length=32, default='', blank='True')
     feedback_flag = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.complaint_id
+
+   

@@ -13,6 +13,7 @@ from random import randint
 import sys, time
 import random
 from django.utils import timezone
+from shapely.geometry import Point, shape
 # import geopandas as gpd
 import geopy
 from geopy.geocoders import Nominatim
@@ -50,6 +51,17 @@ class tweetparse7:
         coordinates = self.str1
         location = locator.reverse(coordinates)
         self.final['address'] = location.address
+
+    def Get_Ward(self,my_lat,my_long):
+        with open('C:/Users/GITANSHU/DjangoAPI/project/kolkata.geojson') as f:
+            js = json.load(f)
+
+        point = Point(my_long,my_lat)
+
+        for feature in js['features']:
+            polygon = shape(feature['geometry'])
+            if polygon.contains(point):
+                return feature['properties']['WARD']
 
     def Convert(self, lst):
         res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
@@ -100,6 +112,10 @@ class tweetparse7:
                     if (d[j]['bounding_box'] != 'null'):
                         self.str1 = str(d[j]['bounding_box']['coordinates'][0][0][1]) + ',' + str(
                             d[j]['bounding_box']['coordinates'][0][0][0])
+                        latitude = d[j]['bounding_box']['coordinates'][0][0][1]
+                        longitude = d[j]['bounding_box']['coordinates'][0][0][0]
+                        ward = self.Get_Ward(latitude,longitude)
+                        self.final['ward_no'] = ward
                         self.final['coordinates'] = self.str1
                         self.GeoFetch()
 
@@ -226,6 +242,7 @@ class StdOutListener(StreamListener):
                     current_complaint.coordinates = tp.final['coordinates']
                     current_complaint.address = tp.final['address']
                     current_complaint.pothole_image = local_image
+                    current_complaint.ward_no = tp.final['ward_no']
                     current_complaint.origin = 'twitter'
                     current_complaint.save()
            

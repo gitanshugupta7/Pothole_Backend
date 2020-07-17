@@ -6,16 +6,21 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.utils import timezone
 import json
+import datetime
+import emoji
+import random
 
 class Pothole(APIView):
     
-    def get(self, request, st, format=None):
-        pothole_data = pothole.objects.filter(status=st)
+    def get(self, request, ward, st, format=None):
+        pothole_data = pothole.objects.filter(status=st, ward_no=ward)
         serializer = PotholeSerializer(pothole_data, many=True)
         return Response(serializer.data)
 
     def post(self, resquest, st, format=None):
-        pass
+        pothole = pothole.objects.all()
+        pothole.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PotholeDetails(APIView):
     
@@ -50,5 +55,3 @@ class PotholeDetails(APIView):
         pothole = self.get_object(st)
         pothole.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
