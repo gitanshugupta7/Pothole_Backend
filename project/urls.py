@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pothole/<int:ward>/<str:st>/', views.Pothole.as_view()),
     path('pothole/<slug:st>', views.PotholeDetails.as_view()),
-    path('bot/', include('bot_app.urls'))
+    path('bot/', include('bot_app.urls')),
+    path('misdata/<int:ward>', views.MISData.as_view())
 
 ]

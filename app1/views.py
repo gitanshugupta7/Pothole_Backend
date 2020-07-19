@@ -9,7 +9,17 @@ import json
 import datetime
 import emoji
 import random
+from microinformation import MIS
 
+class MISData(APIView):
+
+    def get(self, request, ward):
+        mis_data = MIS(ward)
+        return Response(mis_data)
+
+    def post(self, request):
+        pass
+        
 class Pothole(APIView):
     
     def get(self, request, ward, st, format=None):
