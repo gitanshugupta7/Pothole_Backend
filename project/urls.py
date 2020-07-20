@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from app1 import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -28,3 +30,5 @@ urlpatterns = [
     path('misdata/<int:ward>', views.MISData.as_view())
 
 ]
+
+urlpatterns = urlpatterns + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

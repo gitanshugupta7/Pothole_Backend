@@ -25,6 +25,7 @@ class Pothole(APIView):
     def get(self, request, ward, st, format=None):
         pothole_data = pothole.objects.filter(status=st, ward_no=ward)
         serializer = PotholeSerializer(pothole_data, many=True)
+        print(serializer.data)
         return Response(serializer.data)
 
     def post(self, resquest, st, format=None):
