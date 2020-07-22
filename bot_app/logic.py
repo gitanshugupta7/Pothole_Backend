@@ -22,6 +22,7 @@ import geopy
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from decimal import Decimal
+from geopy.geocoders import GoogleV3
 
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','project.settings')
@@ -35,12 +36,10 @@ l = list()
 l1 = ['name','media_url','latitude','longitude','address','created_at','ward_no']
 count = 1
 
-def GeoFetch(str1,key):
-    locator = Nominatim(user_agent="myGeocoder")
-    coordinates = str1
-    location = locator.reverse(coordinates)
-    #print('address : ', location.address)
-    final[key]['address'] = location.address
+def GeoFetch(key,point):
+    geocoder = GoogleV3(api_key='AIzaSyBSNJaY3xoBMMQogL6qmtgZstiwxKJdChE')
+    address = geocoder.reverse(point)
+    final[key]['address'] = address
 
 def get_key(val): 
     global final
@@ -540,7 +539,7 @@ If you have understood all the steps , send your live location , following the g
         final[key]['latitude'] = request.POST['Latitude']
         final[key]['longitude'] = request.POST['Longitude']
         str1 = str(final[key]['latitude']+','+final[key]['longitude'])
-        GeoFetch(str1,key)
+        GeoFetch(key, str1)
         latitude = Decimal(final[key]['latitude'])
         longitude = Decimal(final[key]['longitude'])
         ward = Get_Ward(latitude,longitude)

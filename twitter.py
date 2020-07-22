@@ -24,6 +24,7 @@ import django
 django.setup()
 
 import potholedetector
+from geopy.geocoders import GoogleV3
 
 from app1.models import twitter_data, pothole
 
@@ -40,17 +41,18 @@ count = 1
 status = "Tweet was successful"
 unique_id = ''
 
+print("twitter running")
+
 class tweetparse7:
 
     def __init__(self):
         self.str1 = ""
         self.final = dict()
 
-    def GeoFetch(self):
-        locator = Nominatim(user_agent="myGeocoder")
-        coordinates = self.str1
-        location = locator.reverse(coordinates)
-        self.final['address'] = location.address
+    def GeoFetch(self, point):
+        geocoder = GoogleV3(api_key='AIzaSyBSNJaY3xoBMMQogL6qmtgZstiwxKJdChE')
+        address = geocoder.reverse(point)
+        self.final['address'] = address
 
     def Get_Ward(self,my_lat,my_long):
         with open('C:/Users/GITANSHU/DjangoAPI/project/kolkata.geojson') as f:
@@ -117,7 +119,7 @@ class tweetparse7:
                         ward = self.Get_Ward(latitude,longitude)
                         self.final['ward_no'] = ward
                         self.final['coordinates'] = self.str1
-                        self.GeoFetch()
+                        self.GeoFetch(self.str1)
 
             if (j == 'entities'):
                 if('media' in d[j]):
