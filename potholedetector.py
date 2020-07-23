@@ -53,7 +53,7 @@ from keras.applications.resnet50 import ResNet50
 
 
 model = Sequential()
-model = load_model(r'C:/Users/GITANSHU/DjangoAPI/Pothole-Detector-Model.h5')
+model = load_model(r'C:/Users/GITANSHU/DjangoAPI/Pothole-Modified-Model.h5')
 
 
 def Image(unique_id):
