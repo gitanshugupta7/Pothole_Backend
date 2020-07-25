@@ -22,6 +22,7 @@ import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','project.settings')
 import django
 django.setup()
+from duplicator import duplicate_check
 
 import potholedetector
 from geopy.geocoders import GoogleV3
@@ -246,6 +247,8 @@ class StdOutListener(StreamListener):
                     current_complaint.ward_no = tp.final['ward_no']
                     current_complaint.origin = 'twitter'
                     current_complaint.save()
+
+                    duplicate_check('Recent',tp.final['ward_no'])
            
             return True
 

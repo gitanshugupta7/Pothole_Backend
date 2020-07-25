@@ -17,6 +17,7 @@ import os
 import uuid
 from django.utils import timezone
 from shapely.geometry import shape, Point
+from duplicator import duplicate_check
 
 import geopy
 from geopy.geocoders import Nominatim
@@ -236,6 +237,8 @@ And with that you have successfully registered your complaint.
             current_complaint.origin = 'whatsapp'
             current_complaint.save()
 
+            duplicate_check('Recent',final[key]['ward_no'])
+
             del final[key]
         
 
@@ -415,6 +418,7 @@ And with that , you have successfully registered your complaint.
                 current_complaint.origin = 'whatsapp'
                 current_complaint.save()
 
+                duplicate_check('Recent',final[key]['ward_no'])
 
                 del final[key]
             
@@ -575,6 +579,8 @@ And with this , you have successfully lodged your complaint.
             current_complaint.ward_no = int(final[key]['ward_no'])
             current_complaint.origin = 'whatsapp'
             current_complaint.save()
+
+            duplicate_check('Recent',final[key]['ward_no'])
 
             del final[key]
 
