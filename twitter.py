@@ -50,7 +50,7 @@ class tweetparse7:
         self.final = dict()
 
     def GeoFetch(self, point):
-        geocoder = GoogleV3(api_key='AIzaSyBSNJaY3xoBMMQogL6qmtgZstiwxKJdChE')
+        geocoder = GoogleV3(api_key='AIzaSyDJrBe_VguWvYK8pZhEjKd3sxituvoK2hI')
         address = geocoder.reverse(point)
         self.final['address'] = address
 
@@ -112,10 +112,9 @@ class tweetparse7:
 
                 else:
                     if (d[j]['bounding_box'] != 'null'):
-                        self.str1 = str(d[j]['bounding_box']['coordinates'][0][0][1]) + ',' + str(
-                            d[j]['bounding_box']['coordinates'][0][0][0])
-                        latitude = d[j]['bounding_box']['coordinates'][0][0][1]
-                        longitude = d[j]['bounding_box']['coordinates'][0][0][0]
+                        latitude = d[j]['bounding_box']['coordinates'][0][0][1] 
+                        longitude = d[j]['bounding_box']['coordinates'][0][0][0] 
+                        self.str1 = str(latitude) + ',' + str(longitude)
                         ward = self.Get_Ward(latitude,longitude)
                         self.final['ward_no'] = ward
                         self.final['coordinates'] = self.str1

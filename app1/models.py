@@ -30,7 +30,7 @@ class pothole(models.Model):
     ongoing_timestamp = models.DateTimeField(default=timezone.now, blank=True)
     completed_timestamp = models.DateTimeField(default=timezone.now, blank=True)
     ward_no = models.IntegerField(default=108)
-    no_of_reporters = models.IntegerField(default=10)
+    no_of_reporters = models.IntegerField(default=1)
     pothole_image = models.ImageField(upload_to = "pothole_pictures", blank = "True")
     origin = models.CharField(max_length=32, default='', blank='True')
     feedback_flag = models.BooleanField(default=False)

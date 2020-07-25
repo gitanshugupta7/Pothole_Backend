@@ -37,7 +37,7 @@ l1 = ['name','media_url','latitude','longitude','address','created_at','ward_no'
 count = 1
 
 def GeoFetch(key,point):
-    geocoder = GoogleV3(api_key='AIzaSyBSNJaY3xoBMMQogL6qmtgZstiwxKJdChE')
+    geocoder = GoogleV3(api_key='AIzaSyDJrBe_VguWvYK8pZhEjKd3sxituvoK2hI')
     address = geocoder.reverse(point)
     final[key]['address'] = address
 
