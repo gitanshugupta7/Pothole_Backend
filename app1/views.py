@@ -10,6 +10,16 @@ import datetime
 import emoji
 import random
 from microinformation import MIS
+from completed_graph import export_data_completed
+
+class GraphData(APIView):
+
+    def get(self, request):
+        graph_data = export_data_completed()
+        return Response(graph_data)
+
+    def post(self, request):
+        pass
 
 class MISData(APIView):
 
