@@ -13,6 +13,7 @@ import urllib
 import urllib3
 import shutil
 from potholedetector import Image
+from urllib.request import urlopen
 import os
 import uuid
 from django.utils import timezone

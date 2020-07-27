@@ -1,5 +1,9 @@
-from . models import pothole
-from . serializers import PotholeSerializer
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','project.settings')
+import django
+django.setup()
+from app1.models import pothole
+from app1.serializers import PotholeSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,6 +14,7 @@ import datetime
 import random
 from microinformation import MIS
 from points_distance import coordinates_distance
+
 
 def Convert(lst): 
         res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)} 

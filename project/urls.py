@@ -27,8 +27,8 @@ urlpatterns = [
     path('pothole/<int:ward>/<str:st>/', views.Pothole.as_view()),
     path('pothole/<slug:st>', views.PotholeDetails.as_view()),
     path('bot/', include('bot_app.urls')),
-    path('misdata/<int:ward>', views.MISData.as_view())
-
+    path('misdata/<int:ward>', views.MISData.as_view()),
+    path('graphdata/', views.GraphData.as_view()),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
