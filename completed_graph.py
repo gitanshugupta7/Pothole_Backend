@@ -84,7 +84,6 @@ def export_data_registered():
 
     l = list()
     tempo = dict()
-    print(len(final_list_registered))
     for i in range(0,len(final_list_registered)-1):
         for j in range(i+1,len(final_list_registered)):
             if(final_list_registered[j]['name'] == final_list_registered[i]['name']):
@@ -98,6 +97,16 @@ def export_data_registered():
     del final_list_registered[l[0]:l[len(l)-1]]
 
     del final_list_registered[(len(final_list_registered)-1)]
+    l = list()
+
+    res = [] 
+    for i in range(len(final_list_registered)):
+        for j in final_list_registered[i]['series']: 
+            if j not in res: 
+                res.append(j) 
+        final_list_registered[i]['series'] = res
+        res = list()
+
 
     return final_list_registered
 
@@ -108,7 +117,7 @@ def export_data_registered():
 
 def export_registered_data_for_particular_ward(wd):
 
-    global final_list_registered
+    #global final_list_registered
     global statistics_final
     f = export_data_registered()
     l = list()
@@ -126,6 +135,7 @@ def export_data_completed():
 
     global statistics_final
     global final_list_completed
+    make_data()
 
     series=list()
     temp = dict()
@@ -134,7 +144,7 @@ def export_data_completed():
         for i in val:
             temp['name'] = i
             temp_2['name'] = key
-            temp_2['value'] = val[i]['complaints_registered']
+            temp_2['value'] = val[i]['complaints_completed']
             series.append(temp_2) 
             temp_2 = dict()
             temp['series'] = series
@@ -144,7 +154,6 @@ def export_data_completed():
 
     l = list()
     tempo = dict()
-    print(len(final_list_completed))
     for i in range(0,len(final_list_completed)-1):
         for j in range(i+1,len(final_list_completed)):
             if(final_list_completed[j]['name'] == final_list_completed[i]['name']):
@@ -157,7 +166,15 @@ def export_data_completed():
     
     del final_list_completed[l[0]:l[len(l)-1]]
 
-    del final_list_completed[(len(final_list_registered)-1)]
+    del final_list_completed[(len(final_list_completed)-1)]
+    l = list()
+    res = [] 
+    for i in range(len(final_list_completed)):
+        for j in final_list_completed[i]['series']: 
+            if j not in res: 
+                res.append(j) 
+        final_list_completed[i]['series'] = res
+        res = list()
 
     return final_list_completed
 
@@ -170,7 +187,7 @@ def export_data_completed():
 def export_completed_data_for_particular_ward(wd):
 
     global statistics_final
-    global final_list_completed
+    #global final_list_completed
     p = export_data_completed()
     l = list()
     for i in range(len(p)):
@@ -186,8 +203,8 @@ def export_completed_data_for_particular_ward(wd):
 def reg_vs_complete_particular(wd):
 
     global statistics_final
-    global final_list_registered
-    global final_list_completed
+    #global final_list_registered
+    #global final_list_completed
     f = export_data_registered()
     p = export_data_completed()
 

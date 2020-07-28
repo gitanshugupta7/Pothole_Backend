@@ -52,7 +52,7 @@ def get_key(val):
     return "key doesn't exist"
 
 def Get_Ward(my_lat,my_long):
-    with open('C:/Users/GITANSHU/DjangoAPI/project/kolkata.geojson') as f:
+    with open('D:/Pothole_Backend/kolkata.geojson') as f:
         js = json.load(f)
 
     point = Point(my_long,my_lat)
@@ -292,7 +292,7 @@ Upload an image of the pothole , following the given instructions ! :outbox_tray
 
         final[key]['image_id'] = str(uuid.uuid4())
         resp1 = requests.get(image_url, stream=True)
-        local_file = open("C:/Users/GITANSHU/DjangoAPI/project/media/"+ str(final[key]['image_id']) + ".jpg", 'wb')
+        local_file = open("D:/Pothole_Backend/media/"+ str(final[key]['image_id']) + ".jpg", 'wb')
         resp1.raw.decode_content = True
         shutil.copyfileobj(resp1.raw, local_file)
         del resp1

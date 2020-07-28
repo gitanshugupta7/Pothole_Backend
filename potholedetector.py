@@ -53,12 +53,12 @@ from keras.applications.resnet50 import ResNet50
 
 
 model = Sequential()
-model = load_model(r'C:/Users/GITANSHU/DjangoAPI/Pothole-Modified-Model.h5')
+model = load_model(r'D:/Pothole-Detector-ML/Pothole-Modified-Model.h5')
 
 
 def Image(unique_id):
 
-    path = "C:/Users/GITANSHU/DjangoAPI/project/media/" + unique_id + ".jpg"
+    path = "D:/Pothole_Backend/media" + unique_id + ".jpg"
     X = cv2.imread(path,cv2.IMREAD_COLOR)
     X = cv2.resize(X,(256,256))
 
