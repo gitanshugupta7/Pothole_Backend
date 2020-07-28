@@ -14,50 +14,50 @@ attributes = ['complaints_registered','complaints_completed']
 final_list_registered = list()
 final_list_completed = list()
 
-
-l = list()
-wardlist = list()
+def make_data():
+    l = list()
+    wardlist = list()
     
-for i in range(142):
-    wardlist.append(i)
+    for i in range(142):
+        wardlist.append(i)
 
-pothole_overall_data = pothole.objects.filter(status='Recent')
-for i in pothole_overall_data:
-    temp = str(i.uploaded_timestamp)
-    key = temp[:10]
-    if key not in statistics_final.keys():
-        l.append(key)
-        statistics_final[key] = dict.fromkeys(wardlist)
-        l=[]
+    pothole_overall_data = pothole.objects.filter(status='Recent')
+    for i in pothole_overall_data:
+        temp = str(i.uploaded_timestamp)
+        key = temp[:10]
+        if key not in statistics_final.keys():
+            l.append(key)
+            statistics_final[key] = dict.fromkeys(wardlist)
+            l=[]
 
-for i,j in statistics_final.items():
-    for k in j:
-        j[k] = dict.fromkeys(attributes)
-
-for i,j in statistics_final.items():
-    for k in j:
-        j[k]['complaints_registered'] = 0
-        j[k]['complaints_completed'] = 0
-
-for data in pothole_overall_data:
     for i,j in statistics_final.items():
         for k in j:
-            if(k==data.ward_no):
-                temp = str(data.uploaded_timestamp)
-                key = temp[:10]
-                if(key == i):
-                    j[k]['complaints_registered'] += 1
+            j[k] = dict.fromkeys(attributes)
 
-pothole_completed_data = pothole.objects.filter(status='Completed')
-
-for data in pothole_completed_data:
     for i,j in statistics_final.items():
         for k in j:
-            if(k==data.ward_no):
-                temp = str(data.uploaded_timestamp)
-                key = temp[:10]
-                if(key == i):
-                    j[k]['complaints_completed'] += 1
+            j[k]['complaints_registered'] = 0
+            j[k]['complaints_completed'] = 0
+
+    for data in pothole_overall_data:
+        for i,j in statistics_final.items():
+            for k in j:
+                if(k==data.ward_no):
+                    temp = str(data.uploaded_timestamp)
+                    key = temp[:10]
+                    if(key == i):
+                        j[k]['complaints_registered'] += 1
+
+    pothole_completed_data = pothole.objects.filter(status='Completed')
+
+    for data in pothole_completed_data:
+        for i,j in statistics_final.items():
+            for k in j:
+                if(k==data.ward_no):
+                    temp = str(data.uploaded_timestamp)
+                    key = temp[:10]
+                    if(key == i):
+                        j[k]['complaints_completed'] += 1
 
 
 
@@ -65,6 +65,7 @@ def export_data_registered():
 
     global statistics_final
     global final_list_registered
+    make_data()
 
     series=list()
     temp = dict()
@@ -99,6 +100,8 @@ def export_data_registered():
     del final_list_registered[(len(final_list_registered)-1)]
 
     return final_list_registered
+
+    statistics_final = dict()
 
 
 
@@ -155,6 +158,9 @@ def export_data_completed():
     del final_list_completed[(len(final_list_registered)-1)]
 
     return final_list_completed
+
+    statistics_final = dict()
+
 
 
 
