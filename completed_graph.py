@@ -133,7 +133,7 @@ def export_data_completed():
             temp['name'] = i
             temp_2['name'] = key
             temp_2['value'] = val[i]['complaints_registered']
-            series.append(temp_2)
+            series.append(temp_2) 
             temp_2 = dict()
             temp['series'] = series
             series = list()
