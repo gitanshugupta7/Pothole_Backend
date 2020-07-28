@@ -116,6 +116,7 @@ def export_registered_data_for_particular_ward(wd):
             l.append(f[i])
             return l
             l=list()
+            statistics_final = dict()
 
 
 
@@ -175,6 +176,7 @@ def export_completed_data_for_particular_ward(wd):
             l.append(p[i])
             return l
             l=list()
+            statistics_final = dict()
 
 
 
@@ -205,6 +207,8 @@ def reg_vs_complete_particular(wd):
             temp = dict()
 
     return merged_list
+
+    statistics_final = dict()
 
 
 
