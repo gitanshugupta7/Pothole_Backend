@@ -110,11 +110,11 @@ def export_registered_data_for_particular_ward(wd):
 
     global final_list_registered
     global statistics_final
-    export_data_registered()
+    f = export_data_registered()
     l = list()
-    for i in range(len(final_list_registered)):
-        if(final_list_registered[i]['name'] == wd):
-            l.append(final_list_registered[i])
+    for i in range(len(f)):
+        if(f[i]['name'] == wd):
+            l.append(f[i])
             return l
             l=list()
 
@@ -167,11 +167,11 @@ def export_completed_data_for_particular_ward(wd):
 
     global statistics_final
     global final_list_completed
-    export_data_completed()
+    p = export_data_completed()
     l = list()
-    for i in range(len(final_list_completed)):
-        if(final_list_completed[i]['name'] == wd):
-            l.append(final_list_completed[i])
+    for i in range(len(p)):
+        if(p[i]['name'] == wd):
+            l.append(p[i])
             return l
             l=list()
 
@@ -183,23 +183,23 @@ def reg_vs_complete_particular(wd):
     global statistics_final
     global final_list_registered
     global final_list_completed
-    export_data_registered()
-    export_data_completed()
+    f = export_data_registered()
+    p = export_data_completed()
 
     merged_list = list()
     temp = dict()
 
-    for i in range(len(final_list_registered)):
-        if(final_list_registered[i]['name'] == wd):
+    for i in range(len(f)):
+        if(f[i]['name'] == wd):
             temp['name'] = 'Registered'
-            temp['series'] = final_list_registered[i]['series']
+            temp['series'] = f[i]['series']
             merged_list.append(temp)
             temp = dict()
 
-    for i in range(len(final_list_completed)):
-        if(final_list_completed[i]['name'] == wd):
+    for i in range(len(p)):
+        if(p[i]['name'] == wd):
             temp['name'] = 'Completed'
-            temp['series'] = final_list_completed[i]['series']
+            temp['series'] = p[i]['series']
             merged_list.append(temp)
             temp = dict()
 
