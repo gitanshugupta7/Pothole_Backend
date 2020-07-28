@@ -10,13 +10,27 @@ import datetime
 import emoji
 import random
 from microinformation import MIS
-from completed_graph import export_data_completed
+import completed_graph as cg
 
 class GraphData(APIView):
 
-    def get(self, request):
-        graph_data = export_data_completed()
-        return Response(graph_data)
+    def get(self, request, ward, type, format=None):
+        if(type == "registered_particular"):
+            data = cg.export_registered_data_for_particular_ward(ward)
+            return Response(data)
+        if(type == "completed_particular"):
+            data = cg.export_completed_data_for_particular_ward(ward)
+            return Response(data)
+        if(type == "reg_vs_comp"):
+            data = cg.reg_vs_complete_particular(ward)
+            return Response(data)
+        if(type == "registered_all"):
+            data = cg.export_data_registered()
+            return Response(data)
+        if(type == "completed_all"):
+            data = cg.export_data_completed()
+            return Response(data)
+        
 
     def post(self, request):
         pass
