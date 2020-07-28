@@ -102,6 +102,7 @@ def export_data_registered():
     return final_list_registered
 
     statistics_final = dict()
+    final_list_registered = list()
 
 
 
@@ -161,6 +162,7 @@ def export_data_completed():
     return final_list_completed
 
     statistics_final = dict()
+    final_list_completed = list()
 
 
 
@@ -207,6 +209,8 @@ def reg_vs_complete_particular(wd):
             temp = dict()
 
     return merged_list
+
+    merged_list = list()
 
     statistics_final = dict()
 
