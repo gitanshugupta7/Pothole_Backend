@@ -11,10 +11,11 @@ from app1.serializers import PotholeSerializer
 
 statistics_final = dict()
 attributes = ['complaints_registered','complaints_completed']
+final_list_registered = list()
+final_list_completed = list()
 
-def export_data_completed():
 
-    final = dict()
+def make_data():
     global statistics_final
     global attributes
     l = list()
@@ -36,54 +37,178 @@ def export_data_completed():
         for k in j:
             j[k] = dict.fromkeys(attributes)
 
+    for i,j in statistics_final.items():
+        for k in j:
+            j[k]['complaints_registered'] = 0
+            j[k]['complaints_completed'] = 0
 
     for data in pothole_overall_data:
         for i,j in statistics_final.items():
             for k in j:
                 if(k==data.ward_no):
-                    j[k]['complaints_registered']= pothole.objects.filter(ward_no=k,status='Recent').count() + pothole.objects.filter(ward_no=k, status='Ongoing').count()
-                    j[k]['complaints_completed'] = pothole.objects.filter(ward_no=k, status='Completed').count()
-       
+                    temp = str(data.uploaded_timestamp)
+                    key = temp[:10]
+                    if(key == i):
+                        j[k]['complaints_registered'] += 1
+
+    pothole_completed_data = pothole.objects.filter(status='Completed')
+
+    for data in pothole_completed_data:
+        for i,j in statistics_final.items():
+            for k in j:
+                if(k==data.ward_no):
+                    temp = str(data.uploaded_timestamp)
+                    key = temp[:10]
+                    if(key == i):
+                        j[k]['complaints_completed'] += 1
+
+
+
+def export_data_registered():
+
+    global statistics_final
+    global final_list_registered
+    make_data()
 
     series=list()
     temp = dict()
-    final_list = list()
     temp_2 = dict()
     for key,val in statistics_final.items():
         for i in val:
             temp['name'] = i
             temp_2['name'] = key
-            if(type(val[i]['complaints_registered']) is int):
-                temp_2['value'] = val[i]['complaints_registered']
-            else:
-                temp_2['value'] = 0
+            temp_2['value'] = val[i]['complaints_registered']
             series.append(temp_2)
             temp_2 = dict()
             temp['series'] = series
             series = list()
-            final_list.append(temp)
+            final_list_registered.append(temp)
             temp = dict()
 
     l = list()
     tempo = dict()
-    print(len(final_list))
-    for i in range(0,len(final_list)-1):
-        for j in range(i+1,len(final_list)):
-            if(final_list[j]['name'] == final_list[i]['name']):
-                tempo['name'] = final_list[j]['series'][0]['name']
-                tempo['value'] = final_list[j]['series'][0]['value']
-                final_list[i]['series'].append(tempo)
+    print(len(final_list_registered))
+    for i in range(0,len(final_list_registered)-1):
+        for j in range(i+1,len(final_list_registered)):
+            if(final_list_registered[j]['name'] == final_list_registered[i]['name']):
+                tempo['name'] = final_list_registered[j]['series'][0]['name']
+                tempo['value'] = final_list_registered[j]['series'][0]['value']
+                final_list_registered[i]['series'].append(tempo)
                 tempo = dict()
                 l.append(j)
 
-    #print(len(l))
-    #print(l[0])
-    #print(l[len(l)])
-    del final_list[l[0]:l[len(l)-1]]
-    #print(len(final_list))
-    del final_list[(len(final_list)-1)]
+    
+    del final_list_registered[l[0]:l[len(l)-1]]
 
-    return final_list
+    del final_list_registered[(len(final_list_registered)-1)]
+
+    return final_list_registered
+
+
+
+def export_registered_data_for_particular_ward(wd):
+
+    global final_list_registered
+    global statistics_final
+    export_data_registered()
+    l = list()
+    for i in range(len(final_list_registered)):
+        if(final_list_registered[i]['name'] == wd):
+            l.append(final_list_registered[i])
+            return l
+            l=list()
+
+
+
+
+def export_data_completed():
+
+    global statistics_final
+    global final_list_completed
+    make_data()
+
+    series=list()
+    temp = dict()
+    temp_2 = dict()
+    for key,val in statistics_final.items():
+        for i in val:
+            temp['name'] = i
+            temp_2['name'] = key
+            temp_2['value'] = val[i]['complaints_registered']
+            series.append(temp_2)
+            temp_2 = dict()
+            temp['series'] = series
+            series = list()
+            final_list_completed.append(temp)
+            temp = dict()
+
+    l = list()
+    tempo = dict()
+    print(len(final_list_completed))
+    for i in range(0,len(final_list_completed)-1):
+        for j in range(i+1,len(final_list_completed)):
+            if(final_list_completed[j]['name'] == final_list_completed[i]['name']):
+                tempo['name'] = final_list_completed[j]['series'][0]['name']
+                tempo['value'] = final_list_completed[j]['series'][0]['value']
+                final_list_completed[i]['series'].append(tempo)
+                tempo = dict()
+                l.append(j)
+
+    
+    del final_list_completed[l[0]:l[len(l)-1]]
+
+    del final_list_completed[(len(final_list_registered)-1)]
+
+    return final_list_completed
+
+
+
+def export_completed_data_for_particular_ward(wd):
+
+    global statistics_final
+    global final_list_completed
+    export_data_completed()
+    l = list()
+    for i in range(len(final_list_completed)):
+        if(final_list_completed[i]['name'] == wd):
+            l.append(final_list_completed[i])
+            return l
+            l=list()
+
+
+
+        
+def reg_vs_complete_particular(wd):
+
+    global statistics_final
+    global final_list_registered
+    global final_list_completed
+    export_data_registered()
+    export_data_completed()
+
+    merged_list = list()
+    temp = dict()
+
+    for i in range(len(final_list_registered)):
+        if(final_list_registered[i]['name'] == wd):
+            temp['name'] = 'Registered'
+            temp['series'] = final_list_registered[i]['series']
+            merged_list.append(temp)
+            temp = dict()
+
+    for i in range(len(final_list_completed)):
+        if(final_list_completed[i]['name'] == wd):
+            temp['name'] = 'Completed'
+            temp['series'] = final_list_completed[i]['series']
+            merged_list.append(temp)
+            temp = dict()
+
+    return merged_list
+
+
+
+
+
 
 
 
