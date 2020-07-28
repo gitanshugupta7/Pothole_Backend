@@ -30,8 +30,14 @@ class GraphData(APIView):
         if(type == "completed_all"):
             data = cg.export_data_completed()
             return Response(data)
-        
+        if(type == "piedata_all"):
+            data = cg.piedata_for_all()
+            return Response(data)
+        if(type == 'piedata_particular'):
+            data = cg.piedata_for_particular(ward)
+            return Response(data)
 
+        
     def post(self, request):
         pass
 

@@ -228,8 +228,65 @@ def reg_vs_complete_particular(wd):
     return merged_list
 
     merged_list = list()
-
     statistics_final = dict()
+
+
+def piedata_for_particular(wd):
+
+    pie_list = list()
+    temp = dict()
+
+    temp['name'] = 'Registered'
+    temp['value'] = pothole.objects.filter(ward_no=wd,status='Recent').count() + pothole.objects.filter(ward_no=wd, status='Ongoing').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    temp['name'] = 'Ongoing'
+    temp['value'] = pothole.objects.filter(ward_no=wd, status='Ongoing').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    temp['name'] = 'Completed'
+    temp['value'] = pothole.objects.filter(ward_no=wd, status='Completed').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    return pie_list
+
+
+
+def piedata_for_all():
+
+    pie_list = list()
+    temp = dict()
+
+    temp['name'] = 'Registered'
+    temp['value'] = pothole.objects.filter(status='Recent').count() + pothole.objects.filter(status='Ongoing').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    temp['name'] = 'Ongoing'
+    temp['value'] = pothole.objects.filter(status='Ongoing').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    temp['name'] = 'Completed'
+    temp['value'] = pothole.objects.filter(status='Completed').count()
+
+    pie_list.append(temp)
+    temp = dict()
+
+    return pie_list
+
+
+
+
+
 
 
 
