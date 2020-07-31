@@ -66,7 +66,7 @@ This is to inform that in reference to your complaint id """
 """\n\nReported from :\n\n"""
 +str(data1.address)+
 """\n\nWard Number : """+str(data1.ward_no)+
-"""\n\nAt : """+str(data1.uploaded_timestamp)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)[:19]+
 
 """
 \n\n*Repair work has started* :man_mechanic: :man_construction_worker:
@@ -101,7 +101,7 @@ This is to inform that in reference to your complaint id """
 """\n\nReported from :\n\n"""
 +str(data1.address)+
 """\n\nWard Number : """+str(data1.ward_no)+
-"""\n\nAt : """+str(data1.uploaded_timestamp)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)[:19]+
 
 """
 \n\n*Repair work has started* :man_mechanic: :man_construction_worker:
@@ -151,7 +151,7 @@ This is to inform that in reference to your complaint id """
 """\n\nReported from :\n\n"""
 +str(data1.address)+
 """\n\nWard Number : """+str(data1.ward_no)+
-"""\n\nAt : """+str(data1.uploaded_timestamp)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)[:19]+
 
 """
 *Repair work has been completed* :fire:
@@ -185,7 +185,7 @@ This is to inform that in reference to your complaint id\n\n"""
 """\n\nReported from :\n\n"""
 +str(data1.address)+
 """\n\nWard Number : """+str(data1.ward_no)+
-"""\n\nAt : """+str(data1.uploaded_timestamp)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)[:19]+
 """
 \n\n*Repair work has been completed* :fire:
 
