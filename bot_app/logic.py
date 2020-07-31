@@ -19,6 +19,7 @@ import uuid
 from django.utils import timezone
 from shapely.geometry import shape, Point
 from duplicator import duplicate_check
+from bot_app import feedback_manager as fm
 
 import geopy
 from geopy.geocoders import Nominatim
@@ -74,6 +75,8 @@ def interact(request,incoming_msg):
 
     account_sid = 'AC9304409e5dd28f2e399194f0f6d92b5a'
     auth_token = 'efc5dd0418daa658fbd33a7535ac7fb9'
+
+    fm.feedback()
 
     responded = False
     if incoming_msg == 'hello' or incoming_msg == 'hi':
@@ -301,7 +304,7 @@ Upload an image of the pothole , following the given instructions ! :outbox_tray
         # print("Predicted value : ",punk)
 
         if(punk==1):
-            if((final[key]['name'] is not None) and (final[key]['latitude'] is None or final[key]['longitude'] is None) and (punk is 1)):
+            if((final[key]['name'] is not None) and (final[key]['latitude'] is None or final[key]['longitude'] is None) and (punk == 1)):
                 final[key]['media_url'] = image_url
                 print("Case 1")
                 client = Client(account_sid, auth_token)
@@ -328,7 +331,7 @@ Else , to view the steps of sending current location , reply *Location* to view 
                 
             
 
-            elif((final[key]['name'] is None) and (final[key]['latitude'] is None or final[key]['longitude'] is None) and (punk is 1)):
+            elif((final[key]['name'] is None) and (final[key]['latitude'] is None or final[key]['longitude'] is None) and (punk == 1)):
                 final[key]['media_url'] = image_url
                 print("Case 2")
                 client = Client(account_sid, auth_token)
@@ -356,7 +359,7 @@ If you do not know how to send your live location using Whatsapp , reply *Locati
                 # print("\n\n",final,"\n\n")
             
 
-            elif((final[key]['name'] is None) and (final[key]['latitude'] is not None or final[key]['longitude'] is not None) and (punk is 1)):
+            elif((final[key]['name'] is None) and (final[key]['latitude'] is not None or final[key]['longitude'] is not None) and (punk == 1)):
                 final[key]['media_url'] = image_url
                 print("Case 3")
                 client = Client(account_sid, auth_token)
@@ -381,7 +384,7 @@ Enter your Fullname in the following format :
                 responded = True
                 # print("\n\n",final,"\n\n")
 
-            elif((final[key]['name'] is not None) and (final[key]['latitude'] is not None or final[key]['longitude'] is not None) and (punk is 1)):
+            elif((final[key]['name'] is not None) and (final[key]['latitude'] is not None or final[key]['longitude'] is not None) and (punk == 1)):
                 final[key]['media_url'] = image_url
                 print("Case 4")
                 client = Client(account_sid, auth_token)
