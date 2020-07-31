@@ -60,12 +60,13 @@ def feedback():
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id """
+This is to inform that in reference to your complaint id :thumbs_up: :middle_finger:\n\n"""
 
 +str(id_list[i])+
 
 """
-Repair work has started.
+\n\nRepair work has started. :man_mechanic: :man_construction_worker:
+
 
 You will again be notified once the repair work is finished.
 """, use_aliases=True)
@@ -78,6 +79,7 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
 
@@ -89,9 +91,13 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id """+str(id_list)+
+This is to inform that in reference to your complaint id :thumbs_up::middle_finger:\n\n"""
+
++str(id_list)+
+
 """
-Repair work has started.
+\n\nRepair work has started. :man_mechanic: :man_construction_worker:
+
 
 You will again be notified once the repair work is finished.
 """, use_aliases=True)
@@ -104,6 +110,7 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
 
