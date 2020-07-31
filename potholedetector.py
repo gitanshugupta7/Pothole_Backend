@@ -72,3 +72,5 @@ def Image(unique_id):
         return 1
     
     
+
+#C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/kolkata.geojson
