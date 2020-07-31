@@ -37,7 +37,7 @@ from app1.models import whatsapp_data, pothole
 final=dict()
 l = list()
 l1 = ['name','media_url','latitude','longitude','address','created_at','ward_no']
-count = 1
+lodged = 1
 
 def GeoFetch(key,point):
     geocoder = GoogleV3(api_key='AIzaSyDJrBe_VguWvYK8pZhEjKd3sxituvoK2hI')
@@ -68,7 +68,7 @@ def interact(request,incoming_msg):
     global final
     global l
     global l1
-    global count
+    global lodged
     # create Twilio XML response
     resp = MessagingResponse()
     msg = resp.message()
@@ -428,6 +428,7 @@ And with that , you have successfully registered your complaint.
             
 
         elif(punk==0):
+            os.remove("C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/"+ str(final[key]['image_id']) + ".jpg")
             client = Client(account_sid, auth_token)
             response = emoji.emojize("""
 You have not uploaded image of the pothole ! :cross_mark:
