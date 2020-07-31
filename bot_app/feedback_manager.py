@@ -38,7 +38,7 @@ def feedback():
 
     pothole_data = pothole.objects.filter(status='Ongoing')
 
-    whatsapp = whatsapp_data.objects()
+    whatsapp = whatsapp_data.objects.all()
 
     for data1 in pothole_data:
         if(data1.feedback_flag == 'Registered'):
@@ -60,7 +60,10 @@ def feedback():
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id"""+str(id_list[i])+
+This is to inform that in reference to your complaint id """
+
++str(id_list[i])+
+
 """
 Repair work has started.
 
