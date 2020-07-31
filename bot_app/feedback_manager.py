@@ -63,6 +63,10 @@ def feedback():
 This is to inform that in reference to your complaint id """
 
 +str(id_list[i])+
+"""\n\nReported from :\n\n"""
++str(data1.address)+
+"""\n\nWard Number : """+str(data1.ward_no)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)+
 
 """
 \n\n*Repair work has started* :man_mechanic: :man_construction_worker:
@@ -93,6 +97,10 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
 This is to inform that in reference to your complaint id """
 
 +str(id_list)+
+"""\n\nReported from :\n\n"""
++str(data1.address)+
+"""\n\nWard Number : """+str(data1.ward_no)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)+
 
 """
 \n\n*Repair work has started* :man_mechanic: :man_construction_worker:
@@ -138,6 +146,10 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
 This is to inform that in reference to your complaint id """
 
 +str(id_list[i])+
+"""\n\nReported from :\n\n"""
++str(data1.address)+
+"""\n\nWard Number : """+str(data1.ward_no)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)+
 
 """
 *Repair work has been completed* :fire:
@@ -168,6 +180,10 @@ You can further lodge complaints in the same way as you have done :fire::fire:
 This is to inform that in reference to your complaint id\n\n"""
 
 +str(id_list)+
+"""\n\nReported from :\n\n"""
++str(data1.address)+
+"""\n\nWard Number : """+str(data1.ward_no)+
+"""\n\nAt : """+str(data1.uploaded_timestamp)+
 """
 \n\n*Repair work has been completed* :fire:
 
