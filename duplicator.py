@@ -62,7 +62,10 @@ def duplicate_check(st,ward):
                     for k in pothole_data:
                         if(k.complaint_id==id_to_increment):
                             k.no_of_reporters += 1
-                            k.complaint_id = str(k.complaint_id)+','+str(id_to_delete)
+                            if k.complaint_id_duplicate == '':
+                                k.complaint_id_duplicate = str(id_to_delete)    
+                            else:
+                                k.complaint_id_duplicate = str(k.complaint_id_duplicate)+','+str(id_to_delete)
                         k.save()
                     for k in pothole_data:
                         if(k.complaint_id==id_to_delete):
