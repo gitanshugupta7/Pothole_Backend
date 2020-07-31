@@ -65,9 +65,10 @@ This is to inform that in reference to your complaint id """
 +str(id_list[i])+
 
 """
-Repair work has started.
+\n\n*Repair work has started* :man_mechanic: :man_construction_worker:
 
-You will again be notified once the repair work is finished.
+
+You will again be notified once the repair work is finished :thumbs_up::fire::fire:
 """, use_aliases=True)
                             message = client.messages \
                                 .create(
@@ -89,11 +90,15 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id """+str(id_list)+
-"""
-Repair work has started.
+This is to inform that in reference to your complaint id """
 
-You will again be notified once the repair work is finished.
++str(id_list)+
+
+"""
+\n\n*Repair work has started* :man_mechanic: :man_construction_worker:
+
+
+You will again be notified once the repair work is finished :thumbs_up::fire::fire:
 """, use_aliases=True)
                         message = client.messages \
                             .create(
@@ -135,9 +140,9 @@ This is to inform that in reference to your complaint id """
 +str(id_list[i])+
 
 """
-Repair work has started.
+Repair work has been completed.
 
-You will again be notified once the repair work is finished.
+You can further lodge complaints in the same way as you have done.
 """, use_aliases=True)
                             message = client.messages \
                                 .create(
@@ -160,11 +165,13 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id """+str(id_list)+
-"""
-Repair work has started.
+This is to inform that in reference to your complaint id\n\n"""
 
-You will again be notified once the repair work is finished.
++str(id_list)+
+"""
+\n\nRepair work has been completed.
+
+You can further lodge complaints in the same way as you have done.
 """, use_aliases=True)
                         message = client.messages \
                             .create(
@@ -178,9 +185,3 @@ You will again be notified once the repair work is finished.
                 data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
-
-
-
-            
-
-
