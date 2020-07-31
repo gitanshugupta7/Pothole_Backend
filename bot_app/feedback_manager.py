@@ -43,7 +43,16 @@ def feedback():
     for data1 in pothole_data:
         if(data1.feedback_flag == 'Registered'):
             if(data1.no_of_reporters > 1):
-                id_list = str(data1.complaint_id).split(',')
+                id_list = list()
+                id_list.append(data1.complaint_id)
+                data = len(str(data1.complaint_id_duplicate))
+                if(data>36):
+                    temp = str(data1.complaint_id_duplicate).split(',')
+                    for j in len(temp):
+                        id_list.append(temp[j])
+                    temp = list()
+                else:
+                    id_list.append(data1.complaint_id_duplicate)
                 for i in range(len(id_list)):
                     for data2 in whatsapp:
                         if(data2.complaint_id == id_list[i]):
@@ -66,6 +75,7 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                id_list = list()
                 print("Feedback sent\n\n")
 
             if(data1.no_of_reporters == 1):
@@ -76,7 +86,7 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id"""+str(id_list)+
+This is to inform that in reference to your complaint id """+str(id_list)+
 """
 Repair work has started.
 
@@ -91,6 +101,7 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                id_list = list()
                 print("Feedback sent\n\n")
 
 
