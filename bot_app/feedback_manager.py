@@ -83,6 +83,7 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
 
@@ -117,6 +118,7 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
 
