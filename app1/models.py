@@ -22,7 +22,7 @@ class whatsapp_data(models.Model):
     
          
 class pothole(models.Model):
-    complaint_id = models.CharField(max_length=64, default='', blank='True')
+    complaint_id = models.CharField(max_length=3000, default='', blank='True')
     coordinates = models.CharField(max_length=64, default='', blank='True') 
     address = models.CharField(max_length=512, default='', blank='True')
     status = models.CharField(max_length=20, default='Recent')
@@ -33,9 +33,8 @@ class pothole(models.Model):
     no_of_reporters = models.IntegerField(default=1)
     pothole_image = models.ImageField(upload_to = "pothole_pictures", blank = "True")
     origin = models.CharField(max_length=32, default='', blank='True')
-    feedback_flag = models.BooleanField(default=False)
+    feedback_flag = models.CharField(max_length=25, default='Registered')
 
-    def __str__(self):
-        return self.complaint_id
+    
 
    
