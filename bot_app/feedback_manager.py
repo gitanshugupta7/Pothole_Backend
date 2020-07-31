@@ -60,15 +60,15 @@ def feedback():
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id :thumbs_up: :middle_finger:\n\n"""
+This is to inform that in reference to your complaint id\n\n"""
 
 +str(id_list[i])+
 
 """
-\n\nRepair work has started. :man_mechanic: :man_construction_worker:
+\n\n*Repair work has started* :man_mechanic: :man_construction_worker:
 
 
-You will again be notified once the repair work is finished.
+You will again be notified once the repair work is finished :thumbs_up::fire::fire:
 """, use_aliases=True)
                             message = client.messages \
                                 .create(
@@ -91,15 +91,15 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id :thumbs_up::middle_finger:\n\n"""
+This is to inform that in reference to your complaint id \n\n"""
 
 +str(id_list)+
 
 """
-\n\nRepair work has started. :man_mechanic: :man_construction_worker:
+\n\n*Repair work has started* :man_mechanic::man_construction_worker:
 
 
-You will again be notified once the repair work is finished.
+You will again be notified once the repair work is finished :thumbs_up::fire::fire:
 """, use_aliases=True)
                         message = client.messages \
                             .create(
