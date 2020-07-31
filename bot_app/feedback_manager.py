@@ -140,9 +140,9 @@ This is to inform that in reference to your complaint id """
 +str(id_list[i])+
 
 """
-Repair work has been completed.
+*Repair work has been completed* :fire:
 
-You can further lodge complaints in the same way as you have done.
+You can further lodge complaints in the same way as you have done :fire::fire:
 """, use_aliases=True)
                             message = client.messages \
                                 .create(
@@ -169,9 +169,9 @@ This is to inform that in reference to your complaint id\n\n"""
 
 +str(id_list)+
 """
-\n\nRepair work has been completed.
+\n\n*Repair work has been completed* :fire:
 
-You can further lodge complaints in the same way as you have done.
+You can further lodge complaints in the same way as you have done :fire::fire:
 """, use_aliases=True)
                         message = client.messages \
                             .create(
