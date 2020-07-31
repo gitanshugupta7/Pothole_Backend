@@ -1,8 +1,0 @@
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.10.6
-FN:Abhisekh Chatterjee Cse
-N:Cse;Abhisekh;Chatterjee
-ORG:
-TEL;TYPE=mobile:+91 94331 04504
-END:VCARD
