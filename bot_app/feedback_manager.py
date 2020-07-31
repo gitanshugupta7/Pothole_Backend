@@ -26,7 +26,7 @@ from app1.models import whatsapp_data, pothole
 
 def feedback():
 
-    print("Feedback in progress\n\n")
+    #print("Feedback in progress\n\n")
 
     resp = MessagingResponse()
     msg = resp.message()
@@ -60,13 +60,12 @@ def feedback():
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id :thumbs_up: :middle_finger:\n\n"""
+This is to inform that in reference to your complaint id """
 
 +str(id_list[i])+
 
 """
-\n\nRepair work has started. :man_mechanic: :man_construction_worker:
-
+Repair work has started.
 
 You will again be notified once the repair work is finished.
 """, use_aliases=True)
@@ -79,7 +78,6 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
-                data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
 
@@ -91,13 +89,9 @@ You will again be notified once the repair work is finished.
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id :thumbs_up::middle_finger:\n\n"""
-
-+str(id_list)+
-
+This is to inform that in reference to your complaint id """+str(id_list)+
 """
-\n\nRepair work has started. :man_mechanic: :man_construction_worker:
-
+Repair work has started.
 
 You will again be notified once the repair work is finished.
 """, use_aliases=True)
@@ -110,9 +104,81 @@ You will again be notified once the repair work is finished.
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
+                id_list = list()
+                print("Feedback sent\n\n")
+
+
+    pothole_completed_data = pothole.objects.filter(status='Completed')
+
+    for data1 in pothole_completed_data:
+        if(data1.feedback_flag == 'Notified On Repair Start'):
+            if(data1.no_of_reporters > 1):
+                id_list = list()
+                id_list.append(data1.complaint_id)
+                data = len(str(data1.complaint_id_duplicate))
+                if(data>36):
+                    temp = str(data1.complaint_id_duplicate).split(',')
+                    for j in len(temp):
+                        id_list.append(temp[j])
+                    temp = list()
+                else:
+                    id_list.append(data1.complaint_id_duplicate)
+                for i in range(len(id_list)):
+                    for data2 in whatsapp:
+                        if(data2.complaint_id == id_list[i]):
+                            phone = 'whatsapp:'+str(data2.number)
+                            client = Client(account_sid, auth_token)
+
+                            response = emoji.emojize("""
+This is to inform that in reference to your complaint id """
+
++str(id_list[i])+
+
+"""
+Repair work has started.
+
+You will again be notified once the repair work is finished.
+""", use_aliases=True)
+                            message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body= response,
+                                    to=phone
+                                )
+
+                responded = True
+                data1.feedback_flag = "Notified On Completion"
                 data1.save()
                 id_list = list()
                 print("Feedback sent\n\n")
+
+            if(data1.no_of_reporters == 1):
+                id_list = data1.complaint_id
+                for data2 in whatsapp:
+                    if(data2.complaint_id == id_list):
+                        phone = 'whatsapp:'+str(data2.number)
+                        client = Client(account_sid, auth_token)
+
+                        response = emoji.emojize("""
+This is to inform that in reference to your complaint id """+str(id_list)+
+"""
+Repair work has started.
+
+You will again be notified once the repair work is finished.
+""", use_aliases=True)
+                        message = client.messages \
+                            .create(
+                                from_='whatsapp:+14155238886',
+                                body= response,
+                                to=phone
+                            )
+
+                responded = True
+                data1.feedback_flag = "Notified On Completion"
+                data1.save()
+                id_list = list()
+                print("Feedback sent\n\n")
+
 
 
             
