@@ -60,7 +60,7 @@ def feedback():
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id """
+This is to inform that in reference to your complaint id \n"""
 
 +str(id_list[i])+
 """\n\nReported from :\n\n"""
@@ -95,7 +95,7 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id """
+This is to inform that in reference to your complaint id \n"""
 
 +str(id_list)+
 """\n\nReported from :\n\n"""
