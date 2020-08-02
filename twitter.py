@@ -56,7 +56,7 @@ class tweetparse7:
         self.final['address'] = address
 
     def Get_Ward(self,my_lat,my_long):
-        with open('C:/Users/GITANSHU/DjangoAPI/project/kolkata.geojson') as f:
+        with open('C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/kolkata.geojson') as f:
             js = json.load(f)
 
         point = Point(my_long,my_lat)
@@ -127,7 +127,7 @@ class tweetparse7:
                     self.final['image url'] = image_url
                     resp = requests.get(image_url, stream=True)
                     unique_id = str(uuid.uuid4())
-                    local_file = open('media/' + unique_id + '.png', 'wb')
+                    local_file = open('C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/' + unique_id + '.png', 'wb')
                     local_image = unique_id + '.png'
                     resp.raw.decode_content = True
                     shutil.copyfileobj(resp.raw, local_file)

@@ -58,7 +58,7 @@ model = load_model(r'C:/Users/GITANSHU/DjangoAPI/Pothole-Modified-Model.h5')
 
 def Image(unique_id):
 
-    path = "C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/" + unique_id + ".jpg"
+    path = "C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/" + unique_id + ".png"
     X = cv2.imread(path,cv2.IMREAD_COLOR)
     X = cv2.resize(X,(256,256))
 

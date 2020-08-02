@@ -302,7 +302,7 @@ Upload an image of the pothole , following the given instructions ! :outbox_tray
 
         final[key]['image_id'] = str(uuid.uuid4())
         resp1 = requests.get(image_url, stream=True)
-        local_file = open("C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/"+ str(final[key]['image_id']) + ".jpg", 'wb')
+        local_file = open("C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/"+ str(final[key]['image_id']) + ".png", 'wb')
         resp1.raw.decode_content = True
         shutil.copyfileobj(resp1.raw, local_file)
         del resp1
