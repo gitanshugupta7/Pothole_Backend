@@ -59,14 +59,15 @@ def feedback():
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
+                            points = str(data1.coordinates).split(',')
+                            loc = str('geo:'+str(points[0])+','+str(points[1])+'|'+str(data1.address))
                             message = client.messages \
                                 .create(
                                     from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    body=str(data1.address),
+                                    persistent_action=[loc],
                                     to=phone
                                 )
-
                             response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n\n"""
 
@@ -103,11 +104,13 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                         phone = 'whatsapp:'+str(data2.number)
                         client = Client(account_sid, auth_token)
 
+                        points = str(data1.coordinates).split(',')
+                        loc = str('geo:'+str(points[0])+','+str(points[1])+'|'+str(data1.address))
                         message = client.messages \
                                 .create(
                                     from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    body=str(data1.address),
+                                    persistent_action=[loc],
                                     to=phone
                                 )
 
@@ -162,14 +165,16 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
+                            points = str(data1.coordinates).split(',')
+                            loc = str('geo:'+str(points[0])+','+str(points[1])+'|'+str(data1.address))
                             message = client.messages \
                                 .create(
                                     from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    body=str(data1.address),
+                                    persistent_action=[loc],
                                     to=phone
                                 )
-
+                            
                             response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n\n"""
 
@@ -204,13 +209,15 @@ You can further lodge complaints in the same way as you have done :fire::fire:
                         phone = 'whatsapp:'+str(data2.number)
                         client = Client(account_sid, auth_token)
 
+                        points = str(data1.coordinates).split(',')
+                        loc = str('geo:'+str(points[0])+','+str(points[1])+'|'+str(data1.address))
                         message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
+                            .create(
+                                from_='whatsapp:+14155238886',
+                                body=str(data1.address),
+                                persistent_action=[loc],
+                                to=phone
+                            )
 
                         response = emoji.emojize("""
 This is to inform that in reference to your complaint id\n\n"""
