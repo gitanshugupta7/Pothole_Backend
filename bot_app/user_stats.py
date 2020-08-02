@@ -83,7 +83,7 @@ Dear user , this is to inform that """
 
 +str(ongoing_count)+ """ of them are under construction :construction:\n\n"""
 
-+str(completed_count)+ """ of them are succesfully repaired :thumbsup:\n\n*We really apprecitate your effort* :yellow_heart::yellow_heart:"""
++str(completed_count)+ """ of them are succesfully repaired :thumbsup:\n\n*We really apprecitate your effort* :yellow_heart:"""
 , use_aliases=True)
     message = client.messages \
         .create(
