@@ -59,16 +59,8 @@ def feedback():
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
-                            message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
-
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id \n"""
+This is to inform that in reference to your complaint id \n\n"""
 
 +str(id_list[i])+
 """\n\nReported from :\n\n"""
@@ -88,6 +80,14 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                                     body= response,
                                     to=phone
                                 )
+                                
+                            message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
@@ -103,7 +103,7 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                         client = Client(account_sid, auth_token)
 
                         response = emoji.emojize("""
-This is to inform that in reference to your complaint id \n"""
+This is to inform that in reference to your complaint id \n\n"""
 
 +str(id_list)+
 """\n\nReported from :\n\n"""
@@ -153,7 +153,7 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                             client = Client(account_sid, auth_token)
 
                             response = emoji.emojize("""
-This is to inform that in reference to your complaint id """
+This is to inform that in reference to your complaint id \n\n"""
 
 +str(id_list[i])+
 """\n\nReported from :\n\n"""
