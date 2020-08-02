@@ -71,11 +71,12 @@ def give_stats(request):
 
     client = Client(account_sid, auth_token)
     t = str(timezone.now())
+    t1 = t[:10]
     total = recents_count + ongoing_count + completed_count
     response = emoji.emojize("""
 Dear user , this is to inform that """
 
-+"""till today \n\n"""+t[:10]+
++"""till today \n\n"""+str(t1[::-1])+
 
 """\n\nYou have reported total *"""+str(total)+"""* pothole/s :scream:\n\n"""
 
