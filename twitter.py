@@ -127,8 +127,8 @@ class tweetparse7:
                     self.final['image url'] = image_url
                     resp = requests.get(image_url, stream=True)
                     unique_id = str(uuid.uuid4())
-                    local_file = open('media/' + unique_id + '.jpg', 'wb')
-                    local_image = unique_id + '.jpg'
+                    local_file = open('media/' + unique_id + '.png', 'wb')
+                    local_image = unique_id + '.png'
                     resp.raw.decode_content = True
                     shutil.copyfileobj(resp.raw, local_file)
                     p = potholedetector.Image(unique_id)
@@ -137,7 +137,7 @@ class tweetparse7:
                     else:
                         print("Gadda nai hain bhai jhut bol raha hain")
                         self.final = {}
-                        os.remove('C:/Users/GITANSHU/DjangoAPI/project/media/'+unique_id+'.jpg')
+                        #os.remove('C:/Users/GITANSHU/DjangoAPI/project/media/'+unique_id+'.jpg')
                         i7 = '@' + d['user']['screen_name']
                         m1 = i7 + " " + "Dear User , you have not posted photo of the pothole, please upload a valid image, Tweet Failed"
                         try:
@@ -224,6 +224,7 @@ class StdOutListener(StreamListener):
         try:
 
             with open(self.fetched_tweets_filename, 'a') as tf:
+                print(data)
                 tp = tweetparse7()
                 tp.Parsing(data)
                 res = not tp.final

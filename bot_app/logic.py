@@ -20,6 +20,7 @@ from django.utils import timezone
 from shapely.geometry import shape, Point
 from duplicator import duplicate_check
 from bot_app import feedback_manager as fm
+from bot_app import user_stats as us
 
 import geopy
 from geopy.geocoders import Nominatim
@@ -93,6 +94,8 @@ You can give me the following commands:
 :black_small_square: *'1' :* Reply 1 to lodge a complaint ! :police_car_light:
 
 :black_small_square: *'2' :* Reply 2 to go through the instructions of lodging complaint ! :notebook:
+
+:black_small_square: *'3' :* Reply 3 to have a look at your profile ! :blue_book:
 """, use_aliases=True)
         msg.body(response)
         responded = True
@@ -115,8 +118,12 @@ Now you are ready to lodge your complaint by simply replying *'1'*.
         msg.body(response)
         responded = True
 
-        
-        
+
+    elif incoming_msg == '3':
+        us.give_stats(request)
+        responded = True
+
+      
     elif incoming_msg == '1':
         response = emoji.emojize("""
 Enter your Fullname in the following format :
@@ -641,6 +648,18 @@ If you do not know how to upload an image using Whatsapp , reply *Image* to view
 
     
     if not responded:
-        msg.body("Sorry, I don't understand. Reply *Hello* for a list of commands.")
+        response = emoji.emojize("""
+*Hi! This is the Pothole Management System* :wave:
+Got any complaint to lodge against potholes ?
+
+You can give me the following commands:
+:black_small_square: *'1' :* Reply 1 to lodge a complaint ! :police_car_light:
+
+:black_small_square: *'2' :* Reply 2 to go through the instructions of lodging complaint ! :notebook:
+
+:black_small_square: *'3' :* Reply 3 to have a look at your profile ! :blue_book:
+""", use_aliases=True)
+        msg.body(response)
+        #msg.body("Sorry, I don't understand. Reply *Hello* for a list of commands.")
 
     return (str(resp))
