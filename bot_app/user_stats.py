@@ -30,8 +30,8 @@ def give_stats(request):
     resp = MessagingResponse()
     msg = resp.message()
 
-    account_sid = 'AC9304409e5dd28f2e399194f0f6d92b5a'
-    auth_token = 'efc5dd0418daa658fbd33a7535ac7fb9'
+    account_sid = 'ACe57983b4051b116e6a61919f585d772d'
+    auth_token = 'bc9b19d1f67dd2e493e159d5355b6d44'
 
     pothole_recent_data = pothole.objects.filter(status='Recent')
     pothole_ongoing_data = pothole.objects.filter(status='Ongoing')
@@ -81,7 +81,7 @@ Dear user , this is to inform that """
 
 +"""*Recently*"""+
 
-"""You have reported only 1 pothole"""+
+"""You have reported """+str(recents_count)+""" potholes"""+
 
 """Report details :"""+
 """Reported at : """+str(recents_address[0])
