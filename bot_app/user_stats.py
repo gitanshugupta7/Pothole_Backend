@@ -75,18 +75,15 @@ def give_stats(request):
     response = emoji.emojize("""
 Dear user , this is to inform that """
 
-+"""Till"""+t[:19]+
++"""till today \n\n"""+t[:10]+
 
-"""You have reported total """+str(total)+""" potholes"""
+"""\n\nYou have reported total *"""+str(total)+"""* pothole/s :scream:\n\n"""
 
-+"""*Recently*"""+
++str(recents_count)+ """ of them are yet to be verified \n\n"""
 
-"""You have reported """+str(recents_count)+""" potholes"""+
++str(ongoing_count)+ """ of them are under construction :construction:\n\n"""
 
-"""Report details :"""+
-"""Reported at : """+str(recents_address[0])
-
-+"""Reporting time : """+str(recents_time[0])[:19] 
++str(completed_count)+ """ of them are succesfully repaired :thumbsup:\n\n*We really apprecitate your effort* :yellow_heart::yellow_heart:"""
 , use_aliases=True)
     message = client.messages \
         .create(
