@@ -59,6 +59,14 @@ def feedback():
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
+                            message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
+
                             response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n\n"""
 
@@ -81,13 +89,6 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                                     to=phone
                                 )
 
-                            message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
@@ -101,6 +102,14 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                     if(data2.complaint_id == id_list):
                         phone = 'whatsapp:'+str(data2.number)
                         client = Client(account_sid, auth_token)
+
+                        message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
 
                         response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n\n"""
@@ -124,13 +133,6 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                                 to=phone
                             )
 
-                        message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
 
                 responded = True
                 data1.feedback_flag = "Notified On Repair Start"
@@ -160,6 +162,14 @@ You will again be notified once the repair work is finished :thumbs_up::fire::fi
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
+                            message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
+
                             response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n\n"""
 
@@ -181,14 +191,6 @@ You can further lodge complaints in the same way as you have done :fire::fire:
                                     to=phone
                                 )
 
-                            message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
-
                 responded = True
                 data1.feedback_flag = "Notified On Completion"
                 data1.save()
@@ -201,6 +203,14 @@ You can further lodge complaints in the same way as you have done :fire::fire:
                     if(data2.complaint_id == id_list):
                         phone = 'whatsapp:'+str(data2.number)
                         client = Client(account_sid, auth_token)
+
+                        message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
 
                         response = emoji.emojize("""
 This is to inform that in reference to your complaint id\n\n"""
@@ -222,13 +232,6 @@ You can further lodge complaints in the same way as you have done :fire::fire:
                                 to=phone
                             )
 
-                        message = client.messages \
-                                .create(
-                                    from_='whatsapp:+14155238886',
-                                    body='Twilio HQ',
-                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
-                                    to=phone
-                                )
 
                 responded = True
                 data1.feedback_flag = "Notified On Completion"
