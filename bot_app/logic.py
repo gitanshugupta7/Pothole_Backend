@@ -428,7 +428,7 @@ And with that , you have successfully registered your complaint.
             
 
         elif(punk==0):
-            os.remove("C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/"+ str(final[key]['image_id']) + ".jpg")
+            # os.remove("C:/Users/GITANSHU/DjangoAPI/Pothole_Backend_Kolkata/media/"+ str(final[key]['image_id']) + ".jpg")
             client = Client(account_sid, auth_token)
             response = emoji.emojize("""
 You have not uploaded image of the pothole ! :cross_mark:
