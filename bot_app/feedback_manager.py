@@ -59,6 +59,14 @@ def feedback():
                             phone = 'whatsapp:'+str(data2.number)
                             client = Client(account_sid, auth_token)
 
+                            message = client.messages \
+                                .create(
+                                    from_='whatsapp:+14155238886',
+                                    body='Twilio HQ',
+                                    persistent_action=['geo:37.787890,-122.391664|375 Beale St'],
+                                    to=phone
+                                )
+
                             response = emoji.emojize("""
 This is to inform that in reference to your complaint id \n"""
 
