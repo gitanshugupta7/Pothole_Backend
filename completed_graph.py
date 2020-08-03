@@ -213,7 +213,7 @@ def reg_vs_complete_particular(wd):
 
     for i in range(len(f)):
         if(f[i]['name'] == wd):
-            temp['name'] = 'Registered'
+            temp['name'] = 'Recent'
             temp['series'] = f[i]['series']
             merged_list.append(temp)
             temp = dict()
@@ -236,8 +236,8 @@ def piedata_for_particular(wd):
     pie_list = list()
     temp = dict()
 
-    temp['name'] = 'Registered'
-    temp['value'] = pothole.objects.filter(ward_no=wd,status='Recent').count() + pothole.objects.filter(ward_no=wd, status='Ongoing').count()
+    temp['name'] = 'Recent'
+    temp['value'] = pothole.objects.filter(ward_no=wd,status='Recent').count()
 
     pie_list.append(temp)
     temp = dict()
@@ -263,9 +263,8 @@ def piedata_for_all():
     pie_list = list()
     temp = dict()
 
-    temp['name'] = 'Registered'
-    temp['value'] = pothole.objects.filter(status='Recent').count() + pothole.objects.filter(status='Ongoing').count()
-
+    temp['name'] = 'Recent'
+    temp['value'] = pothole.objects.filter(status='Recent').count() 
     pie_list.append(temp)
     temp = dict()
 
